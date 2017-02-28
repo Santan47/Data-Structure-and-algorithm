@@ -23,6 +23,7 @@ break;
 case 4:return 1;
 defult: printf("invalid choise\n");
 }
+}
 return 0;
 }
 void push()
