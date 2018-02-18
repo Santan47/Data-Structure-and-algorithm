@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<malloc.h>
+#include<stdlib.h>
 void insert_node();
 void delete_node();
 void display_node();
@@ -33,26 +34,43 @@ void insert_node(){
 		  }
 /*deleteing a node from the linked list*/
 void delete_node(){
-			if(start=NULL)
-			printf("linked list is empty.");
-			else
-			{
- 				int a;
- 				printf("enter the data which you want to delete:");
- 				scanf("%d",&a);
- 				struct node *c,*p;
- 				c=start;
- 				while(c->data!=a)
- 				c=c->next;
-				p=c->next;
-				c->next=p->next;
-			}
 			
- 		
+			struct node *c,*n,*fnull;
+			int key;
+			c=start;
+			if(c==NULL){
+			printf("linkedlist is empty\n");
+			return;
+			}
+			else if(c!=NULL&&c->data==key){
+			printf("enter the node element which you want to delete:");
+                        scanf("%d",&key);
+			fnull=c->next;
+			fnull->next=NULL;
+			start=fnull;
+			free(c);
+			return;
+			}
+			else{
+			printf("enter the node element which you want to delete:");
+                        scanf("%d",&key);
+			while(c!=NULL&&c->data!=key){
+				n=c;
+				c=c->next;
+			}
+			if(c==NULL) return;
+			//unlink the node from the linkedlist
+			n->next=c->next;
+			free(c);
+			}
 		  }
 /*display the linked list */
 void display_node(){
  			struct node *l=start;
+			if(l==NULL){
+			printf("linkedlist is empty");
+			return;
+			}
 			while(l!=NULL){
 					printf("%d\n",l->data);
 					 l=l->next;
